@@ -15,6 +15,15 @@
 13. Generate types for your Supabase tables using `yarn generate:types:local`.
 14. Run `yarn dev` to start the development server.
 
+### Database Migration
+
+1. In terminal, run `yarn supabase migration new <migration name>`
+2. Edit migration file `<123456_migration_name>.sql` to create table, add row etc.
+3. Terminal: `yarn supabase db push`
+4. Observe changes on app.supabase.com
+5. Push new migration files to git
+6. For other users to see changes, pull migrations from git, run `yarn supabase db push`
+
 ### Testing
 
 1. Unit test using `yarn test`
