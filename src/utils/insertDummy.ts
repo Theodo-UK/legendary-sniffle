@@ -17,7 +17,7 @@ type Embedding = Database['public']['Tables']['embedding']['Insert'];
 const dummyData: Embedding = {
   input_text: 'This is a test string',
   input_url: 'https://test-url.com',
-  usage_count: null,
+  usage_count: 0,
   vector: dummyVector.vector,
 };
 

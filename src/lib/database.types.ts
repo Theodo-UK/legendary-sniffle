@@ -34,36 +34,22 @@ export interface Database {
           id: number
           input_text: string
           input_url: string
-          usage_count: number | null
+          usage_count: number
           vector: string
         }
         Insert: {
           id?: never
           input_text: string
           input_url: string
-          usage_count?: number | null
+          usage_count?: number
           vector: string
         }
         Update: {
           id?: never
           input_text?: string
           input_url?: string
-          usage_count?: number | null
+          usage_count?: number
           vector?: string
-        }
-      }
-      test: {
-        Row: {
-          id: number | null
-          input_text: string
-        }
-        Insert: {
-          id?: number | null
-          input_text: string
-        }
-        Update: {
-          id?: number | null
-          input_text?: string
         }
       }
     }
