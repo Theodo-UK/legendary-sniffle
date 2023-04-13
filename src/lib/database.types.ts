@@ -29,6 +29,29 @@ export interface Database {
           name?: string
         }
       }
+      embedding: {
+        Row: {
+          id: number
+          input_text: string
+          input_url: string
+          usage_count: number
+          vector: string
+        }
+        Insert: {
+          id?: never
+          input_text: string
+          input_url: string
+          usage_count?: number
+          vector: string
+        }
+        Update: {
+          id?: never
+          input_text?: string
+          input_url?: string
+          usage_count?: number
+          vector?: string
+        }
+      }
     }
     Views: {
       [_ in never]: never
