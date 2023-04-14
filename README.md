@@ -3,17 +3,18 @@
 1. Clone the repo
 2. Update `node` version to 18
 3. Install dependencies with `yarn`
-4. Create a Supabase account if you don't have one already
-5. Create a new project in Supabase
-6. Generate a Supabase access token
-7. Install Supabase CLI with `brew install supabase/tap/supabase`
-8. Run `supabase init` - project should already be initialised
-9. Run `supabase login` and paste the access token in
-10. Link Supabase to your project using `yarn supabase link --project-ref <project-ref>`. You can get your project ref from the Supabase Project dashboard (Project Settings -> API)
-11. Duplicate `.env.local.example` and rename it to `.env.local` and add the relevant environment variables from Dashlane.
-12. Push the database schema to your Supabase project using `yarn supabase db push`.
-13. Generate types for your Supabase tables using `yarn generate:types:local`.
-14. Run `yarn dev` to start the development server.
+4. Install additional dependencies by running `pip3 install requirements.txt`
+5. Create a Supabase account if you don't have one already
+6. Create a new project in Supabase
+7. Generate a Supabase access token
+8. Install Supabase CLI with `brew install supabase/tap/supabase`
+9. Run `supabase init` - project should already be initialised
+10. Run `supabase login` and paste the access token in
+11. Link Supabase to your project using `yarn supabase link --project-ref <project-ref>`. You can get your project ref from the Supabase Project dashboard (Project Settings -> API)
+12. Duplicate `.env.local.example` and rename it to `.env.local` and add the relevant environment variables from Dashlane.
+13. Push the database schema to your Supabase project using `yarn supabase db push`.
+14. Generate types for your Supabase tables using `yarn generate:types:local`.
+15. Run `yarn dev` to start the development server.
 
 ### Database Migration
 
