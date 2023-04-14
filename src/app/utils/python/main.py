@@ -15,3 +15,6 @@ if __name__ == "__main__":
         page['article_info_text'] = clean_text
 
     chunked_text = chunkText(scraped_data)
+
+    for chunk in chunked_text[:20]:
+        print(chunk)
