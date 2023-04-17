@@ -20,7 +20,8 @@ const createEmbedding = async (query: string): Promise<OpenaiEmbeddingType> => {
   );
 
   if (embeddingResponse.status !== 200) {
-    throw `Failed to create embedding from question - Error Status: ${embeddingResponse.status}`;
+    throw `Failed to create embedding from question
+     - Error Status: ${embeddingResponse.status} (${embeddingResponse.statusText})`;
   }
 
   const {
