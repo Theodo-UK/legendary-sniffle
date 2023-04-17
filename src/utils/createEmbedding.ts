@@ -6,7 +6,7 @@ import { EmbeddingsArray } from '@/types';
 dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
 
 const inputChunks = JSON.parse(
-  fs.readFileSync('./src/utils//data/dummyChunks.json', 'utf8')
+  fs.readFileSync('./src/data/dummyChunks.json', 'utf8')
 );
 
 const configuration = new Configuration({
@@ -35,10 +35,14 @@ const createEmbeddings = async (openai, inputChunks) => {
       input: chunk.input_text,
     };
     const embedding = await callAPI(openai, request);
-    outputArray.push({ ...chunk, vector: JSON.stringify(embedding) });
+    outputArray.push({
+      input_url: chunk.url,
+      input_text: chunk.input_text,
+      vector: JSON.stringify(embedding),
+    });
   }
   fs.writeFile(
-    './src/utils/data/dummyEmbeddings.json',
+    './src/data/dummyEmbeddings.json',
     JSON.stringify(outputArray),
     'utf8',
     (error) => {

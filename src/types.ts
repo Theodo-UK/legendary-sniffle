@@ -6,7 +6,7 @@ export type Table<T extends keyof Database['public']['Tables']> =
   Database['public']['Tables'][T]['Row'];
 
 export type EmbeddingsArray = {
-  url: string;
+  input_url: string;
   input_text: string;
   vector: string;
 }[];
