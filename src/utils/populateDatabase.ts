@@ -18,7 +18,7 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? ''
 );
 
-const insertItems = async (
+const populateDatabase = async (
   supabase: AppSupabaseClient,
   items: EmbeddingDTO[]
 ): Promise<Table<'embedding'>> => {
@@ -32,4 +32,4 @@ const insertItems = async (
   return data;
 };
 
-insertItems(supabase, entries);
+populateDatabase(supabase, entries);
