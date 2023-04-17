@@ -1,8 +1,9 @@
 import dotenv from 'dotenv';
 import * as path from 'path';
-import { Configuration, OpenAIApi, CreateEmbeddingRequest } from 'openai';
-dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
 import * as fs from 'fs';
+import { Configuration, OpenAIApi, CreateEmbeddingRequest } from 'openai';
+import { EmbeddingsArray } from '@/types';
+dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
 
 const inputChunks = JSON.parse(
   fs.readFileSync('./src/utils//data/dummyChunks.json', 'utf8')
@@ -12,7 +13,7 @@ const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
-const outputArray: object[] = [];
+const outputArray: EmbeddingsArray = [];
 
 const callAPI = async (openai, request) => {
   try {
@@ -28,22 +29,22 @@ const callAPI = async (openai, request) => {
 };
 
 const createEmbeddings = async (openai, inputChunks) => {
-  for (const obj of inputChunks) {
+  for (const chunk of inputChunks) {
     const request: CreateEmbeddingRequest = {
       model: 'text-embedding-ada-002',
-      input: obj.input_text,
+      input: chunk.input_text,
     };
     const embedding = await callAPI(openai, request);
-    outputArray.push({ ...obj, vector: JSON.stringify(embedding) });
+    outputArray.push({ ...chunk, vector: JSON.stringify(embedding) });
   }
   fs.writeFile(
     './src/utils/data/dummyEmbeddings.json',
     JSON.stringify(outputArray),
     'utf8',
-    function (error) {
+    (error) => {
       if (error) {
-        console.log('An error occured while writing JSON Object to File.');
-        return console.log(error);
+        console.log('An error occurred while writing JSON Object to File.');
+        return;
       }
 
       console.log('Embeddings file has been saved.');
