@@ -3,7 +3,7 @@
 1. Clone the repo
 2. Update `node` version to 18
 3. Install dependencies with `yarn`
-4. Install additional dependencies by running `pip3 install requirements.txt`
+4. Install additional dependencies by running `pip3 install -r requirements.txt`
 5. Create a Supabase account if you don't have one already
 6. Create a new project in Supabase
 7. Generate a Supabase access token
