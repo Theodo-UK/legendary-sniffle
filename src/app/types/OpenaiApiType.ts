@@ -12,3 +12,5 @@ export type OpenaiMessageType = {
   role: string;
   content: string;
 };
+
+export type OpenaiEmbeddingType = number[];
