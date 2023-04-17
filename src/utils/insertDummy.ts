@@ -3,7 +3,7 @@ import * as path from 'path';
 import { AppSupabaseClient, Table } from '@/types';
 import { createClient } from '@supabase/supabase-js';
 import { Database } from '../lib/database.types';
-import * as dummyVector from './dummyVector.json';
+import * as dummyVector from './data/dummyVector.json';
 
 dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
 
