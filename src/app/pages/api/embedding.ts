@@ -1,4 +1,3 @@
-// import { OpenaiEmbeddingType } from '@/app/types/OpenaiEmbeddingType';
 import dotenv from 'dotenv';
 import * as path from 'path';
 import { OpenaiEmbeddingType } from '@/app/types/OpenaiApiType';
@@ -30,6 +29,4 @@ const createEmbedding = async (query: string): Promise<OpenaiEmbeddingType> => {
   return embedding;
 };
 
-createEmbedding('What is Wizz policy regarding test queries?').then(
-  (embedding) => console.log(embedding)
-);
+createEmbedding('').then((embedding) => console.log(embedding));
