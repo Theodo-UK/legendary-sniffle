@@ -7,7 +7,7 @@ import { Database } from '../lib/database.types';
 
 dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
 
-type EmbeddingDTO = Database['public']['Tables']['embedding']['Insert'];
+export type EmbeddingDTO = Database['public']['Tables']['embedding']['Insert'];
 
 const entries: EmbeddingDTO[] = JSON.parse(
   fs.readFileSync('./src/data/dummyEmbeddings.json', 'utf8')

@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import * as path from 'path';
 import { AppSupabaseClient, Table } from '@/types';
 import { createClient } from '@supabase/supabase-js';
-import { Database } from '../lib/database.types';
+import { EmbeddingDTO } from './populateDatabase';
 import * as dummyVector from './data/dummyVector.json';
 
 dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
@@ -11,8 +11,6 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL ?? '',
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? ''
 );
-
-type EmbeddingDTO = Database['public']['Tables']['embedding']['Insert'];
 
 const dummyData: EmbeddingDTO = {
   input_text: 'This is a test string',
