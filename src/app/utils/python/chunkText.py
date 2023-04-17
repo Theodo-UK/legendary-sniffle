@@ -32,7 +32,5 @@ def chunkText(scraped_pages: List[Dict[str, str]]) -> List[str]:
             data = {}
             data['url'] = page['url']
             data['input_text'] = chunk
-            # force strings to be enclosed in double quotes
-            j = json.dumps(data)
-            jsons.append(j)
+            jsons.append(data)
     return jsons

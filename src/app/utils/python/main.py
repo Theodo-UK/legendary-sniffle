@@ -1,3 +1,4 @@
+import json
 from scraper import scrape
 from cleanText import cleanScrapedText
 from chunkText import chunkText
@@ -16,5 +17,5 @@ if __name__ == "__main__":
 
     chunked_text = chunkText(scraped_data)
 
-    for chunk in chunked_text[:20]:
-        print(chunk)
+    with open('../../../data/chunks.json', 'w+') as f:
+        json.dump(chunked_text, f, ensure_ascii=False, indent=4)
