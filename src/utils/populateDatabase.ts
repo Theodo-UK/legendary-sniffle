@@ -10,7 +10,7 @@ dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
 type EmbeddingDTO = Database['public']['Tables']['embedding']['Insert'];
 
 const entries: EmbeddingDTO[] = JSON.parse(
-  fs.readFileSync('./src/utils/data/dummyEmbeddings.json', 'utf8')
+  fs.readFileSync('./src/data/dummyEmbeddings.json', 'utf8')
 );
 
 const supabase = createClient(
