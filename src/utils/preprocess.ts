@@ -3,6 +3,8 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { Configuration, OpenAIApi } from 'openai';
 import { createEmbeddings } from './createEmbedding';
+import { populateDatabase } from './populateDatabase';
+import { createClient } from '@supabase/supabase-js';
 dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
 
 const preprocess = async () => {
@@ -29,6 +31,12 @@ const preprocess = async () => {
       console.log('Embeddings file has been saved.');
     }
   );
+
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL ?? '',
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? ''
+  );
+  populateDatabase(supabase, outputArray);
 };
 
 preprocess();
