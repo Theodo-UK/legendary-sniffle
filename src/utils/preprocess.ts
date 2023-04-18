@@ -7,7 +7,7 @@ import { populateDatabase } from './populateDatabase';
 import { createClient } from '@supabase/supabase-js';
 dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
 
-const preprocess = async () => {
+const preprocess = async (table_name: string) => {
   const chunks = JSON.parse(fs.readFileSync('data/chunks.json', 'utf8'));
   const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
@@ -33,7 +33,12 @@ const preprocess = async () => {
     process.env.NEXT_PUBLIC_SUPABASE_URL ?? '',
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? ''
   );
-  populateDatabase(supabase, outputArray);
+  populateDatabase(supabase, outputArray, table_name);
 };
-
-preprocess();
+const table_name = process.argv[2];
+if (!table_name) {
+  throw new Error(
+    'Error: No table specified. Provide as argument in terminal.'
+  );
+}
+preprocess(table_name);
