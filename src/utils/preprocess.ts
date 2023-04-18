@@ -13,11 +13,12 @@ const preprocess = async (table_name: string) => {
     apiKey: process.env.OPENAI_API_KEY,
   });
   const openai = new OpenAIApi(configuration);
-  const outputArray = await createEmbeddings(openai, chunks);
+  console.log('Creating embeddings...');
+  const embeddings = await createEmbeddings(openai, chunks);
 
   fs.writeFile(
     'data/embeddings.json',
-    JSON.stringify(outputArray),
+    JSON.stringify(embeddings),
     'utf8',
     (error) => {
       if (error) {
@@ -33,7 +34,9 @@ const preprocess = async (table_name: string) => {
     process.env.NEXT_PUBLIC_SUPABASE_URL ?? '',
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? ''
   );
-  populateDatabase(supabase, outputArray, table_name);
+  console.log(`Writing embeddings to supabase in table ${table_name}...`);
+  populateDatabase(supabase, embeddings, table_name);
+  console.log('Done!');
 };
 const table_name = process.argv[2];
 if (!table_name) {
