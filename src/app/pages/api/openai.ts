@@ -1,6 +1,6 @@
 import * as path from 'path';
 import dotenv from 'dotenv';
-import { OpenaiApiType } from '@/app/types/OpenaiApiType';
+import { OpenaiApiType, OpenaiMessageType } from '@/app/types/OpenaiApiType';
 
 dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
 
@@ -20,7 +20,7 @@ const getChatResponse = async (
 
   const userDummyMessage = 'This is a test message!';
 
-  const customKnowledge = props.knowledge
+  const customKnowledge: OpenaiMessageType[] = props.knowledge
     ? props.knowledge.map((info) => {
         return { role: 'system', content: info };
       })
@@ -49,7 +49,4 @@ const getChatResponse = async (
   return data as OpenaiApiType;
 };
 
-getChatResponse({ knowledge: [] }).then(
-  (response) => console.log(response)
-  // console.log(response.choices[0].message.content)
-);
+getChatResponse({ knowledge: [] }).then((response) => console.log(response));
