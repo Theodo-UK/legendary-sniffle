@@ -2,12 +2,14 @@ import json
 from scraper import scrape
 from cleanText import cleanScrapedText
 from chunkText import chunkText
+import os
 
 
 if __name__ == "__main__":
+    output_folder = '../data'
 
-    start_urls = ['https://wizzair.com/en-gb/information-and-services/booking-information/how-to-book', 'https://wizzair.com/en-gb/information-and-services/booking-information/check-in-and-boarding',
-                  'https://wizzair.com/en-gb/information-and-services/booking-information/changing-your-reservation']
+    with open('urls.txt') as f:
+        start_urls = f.readlines()
 
     scraped_data = scrape(start_urls)
 
@@ -17,5 +19,8 @@ if __name__ == "__main__":
 
     chunked_text = chunkText(scraped_data)
 
-    with open('../../../data/chunks.json', 'w+') as f:
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+
+    with open(os.path.join(output_folder, 'chunks.json'), 'w+') as f:
         json.dump(chunked_text, f, ensure_ascii=False, indent=4)
