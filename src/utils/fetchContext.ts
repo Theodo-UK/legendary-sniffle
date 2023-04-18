@@ -15,6 +15,5 @@ export const fetchContext = async (query_vector) => {
     match_count: 5,
     min_content_length: 0,
   });
-  // TODO: error checking (response.error)
   return response.data;
 };
