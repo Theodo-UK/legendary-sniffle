@@ -1,24 +1,18 @@
 import dotenv from 'dotenv';
 import * as path from 'path';
-import * as fs from 'fs';
-import { Configuration, OpenAIApi, CreateEmbeddingRequest } from 'openai';
-import { EmbeddingsArray } from '@/types';
+import { CreateEmbeddingRequest, OpenAIApi } from 'openai';
+import { Chunk, EmbeddingsArray } from '@/types';
 dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
 
-const inputChunks = JSON.parse(
-  fs.readFileSync('./src/data/dummyChunks.json', 'utf8')
-);
-
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
-const outputArray: EmbeddingsArray = [];
-
-const callAPI = async (openai, request) => {
+const callAPI = async (openai: OpenAIApi, request: CreateEmbeddingRequest) => {
   try {
-    const completion = await openai.createEmbedding(request);
-    return completion.data.data[0].embedding;
+    const response = await openai.createEmbedding(request);
+
+    const embeddings = response.data.data.map((embedding_response) => {
+      return embedding_response;
+    });
+
+    return embeddings;
   } catch (error) {
     if (error.response) {
       console.log('ERROR STATUS CODE: ', error.response.status);
@@ -28,32 +22,27 @@ const callAPI = async (openai, request) => {
   }
 };
 
-const createEmbeddings = async (openai, inputChunks) => {
-  for (const chunk of inputChunks) {
-    const request: CreateEmbeddingRequest = {
-      model: 'text-embedding-ada-002',
-      input: chunk.input_text,
+export const createEmbeddings = async (
+  openai: OpenAIApi,
+  inputChunks: Chunk[]
+) => {
+  const request: CreateEmbeddingRequest = {
+    model: 'text-embedding-ada-002',
+    input: inputChunks.map((inputChunk) => {
+      return inputChunk.input_text;
+    }),
+  };
+  const embeddings = await callAPI(openai, request);
+  const outputArray: EmbeddingsArray = inputChunks.map((inputChunk, index) => {
+    const embedding = embeddings.filter((val) => {
+      return val.index === index;
+    })[0];
+    return {
+      input_url: inputChunk.url,
+      input_text: inputChunk.input_text,
+      vector: JSON.stringify(embedding.embedding),
     };
-    const embedding = await callAPI(openai, request);
-    outputArray.push({
-      input_url: chunk.url,
-      input_text: chunk.input_text,
-      vector: JSON.stringify(embedding),
-    });
-  }
-  fs.writeFile(
-    './src/data/dummyEmbeddings.json',
-    JSON.stringify(outputArray),
-    'utf8',
-    (error) => {
-      if (error) {
-        console.log('An error occurred while writing JSON Object to File.');
-        return;
-      }
+  });
 
-      console.log('Embeddings file has been saved.');
-    }
-  );
+  return outputArray;
 };
-
-createEmbeddings(openai, inputChunks);
