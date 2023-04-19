@@ -1,52 +1,36 @@
-import * as path from 'path';
-import dotenv from 'dotenv';
-import { OpenaiApiType, OpenaiMessageType } from '@/app/types/OpenaiApiType';
+import { OpenaiApiType } from '@/app/types/OpenaiApiType';
+import extractKnowledge from '@/app/utils/extractKnowledge/extractKnowledge';
+import createEmbedding from '@/app/utils/handleApiRequest/createEmbedding/createEmbedding';
+import { getChatResponse } from '@/app/utils/handleApiRequest/getChatResponse/getChatResponse';
+import fetchContext from '@/utils/fetchContext';
+import * as readline from 'readline';
 
-dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
+const callOpenai = async (userQuestion: string) => {
+  const embedding = await createEmbedding(userQuestion);
+  const contextResponse = await fetchContext(embedding);
 
-type getChatResponseType = {
-  knowledge: string[];
-};
+  if (contextResponse.length === 0) {
+    return 'Unable to find information on this topic.';
+  }
 
-const getChatResponse = async (
-  props: getChatResponseType
-): Promise<OpenaiApiType> => {
-  // source: https://supabase.com/docs/guides/getting-started/openai/vector-search
-  const temperamentPrimer =
-    'You are a helpdesk assistant for WizzAir who loves to help users find the correct information for their questions from our FAQs.';
-  const knowledgeBasePrimer =
-    'If you are unsure and the answer is not explicitly written in the information provided, say "Sorry, I don\'t know how to help with that.';
-  const legalityPrimer = 'You should not provide legal advice of any kind.';
+  const customKnowledge = await extractKnowledge(contextResponse);
 
-  const userDummyMessage = 'This is a test message!';
-
-  const customKnowledge: OpenaiMessageType[] = props.knowledge
-    ? props.knowledge.map((info) => {
-        return { role: 'system', content: info };
-      })
-    : [];
-
-  const response = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json',
-      Authorization: 'Bearer ' + process.env.API_KEY,
-    },
-    body: JSON.stringify({
-      model: 'gpt-3.5-turbo',
-      messages: [
-        { role: 'system', content: temperamentPrimer },
-        { role: 'system', content: knowledgeBasePrimer },
-        { role: 'system', content: legalityPrimer },
-        ...customKnowledge,
-        { role: 'user', content: userDummyMessage },
-      ],
-      temperature: 0.1,
-    }),
+  const chatResponse: OpenaiApiType = await getChatResponse({
+    knowledge: customKnowledge,
+    prompt: userQuestion,
   });
 
-  const data = await response.json();
-  return data as OpenaiApiType;
+  const chatMessage = chatResponse.choices[0].message.content;
+
+  return chatMessage;
 };
 
-getChatResponse({ knowledge: [] }).then((response) => console.log(response));
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+rl.question('Question: ', (prompt) => {
+  callOpenai(prompt).then((res) => console.log(res));
+  rl.close();
+});

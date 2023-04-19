@@ -24,7 +24,8 @@
     "paths": {
       "@/*": ["src/*"],
       "@public/*": ["public/*"]
-    }
+    },
+    "strictNullChecks": true
   },
   "ts-node": {
     "compilerOptions": {
