@@ -24,6 +24,7 @@ module.exports = {
         'src/**/*.tsx',
         'emails/**/*.ts',
         'emails/**/*.tsx',
+        'vitest.config.ts',
       ],
     },
     {
