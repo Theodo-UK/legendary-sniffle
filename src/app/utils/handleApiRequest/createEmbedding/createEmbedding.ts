@@ -1,7 +1,9 @@
 import dotenv from 'dotenv';
 import * as path from 'path';
 import { OpenaiEmbeddingType } from '@/app/types/OpenaiApiType';
-dotenv.config({ path: path.resolve(__dirname, '../../../..', '.env.local') });
+dotenv.config({
+  path: path.resolve(__dirname, '../../../../..', '.env.local'),
+});
 
 const createEmbedding = async (query: string): Promise<OpenaiEmbeddingType> => {
   const embeddingResponse = await fetch(
@@ -30,4 +32,4 @@ const createEmbedding = async (query: string): Promise<OpenaiEmbeddingType> => {
   return embedding;
 };
 
-createEmbedding('').then((embedding) => console.log(embedding));
+export default createEmbedding;
