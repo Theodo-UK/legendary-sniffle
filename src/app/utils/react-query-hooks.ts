@@ -25,7 +25,7 @@ export const useItems = (initialData: Array<Table<'items'>>) => {
 
 export const useInsertItem = ({ onSuccess }: { onSuccess?: () => void }) => {
   const queryClient = useQueryClient();
-  const toastRef = useRef<string | null>(null);
+  const toastRef = useRef<string | undefined>(undefined);
   return useMutation(
     async (item: { name: string; description: string }) => {
       return insertItem(supabaseClient, item);
@@ -38,13 +38,13 @@ export const useInsertItem = ({ onSuccess }: { onSuccess?: () => void }) => {
 
       onSuccess: () => {
         toast.success('Item created', { id: toastRef.current });
-        toastRef.current = null;
+        toastRef.current = undefined;
         queryClient.invalidateQueries(['items']);
         onSuccess?.();
       },
       onError: () => {
         toast.error('Failed to create item', { id: toastRef.current });
-        toastRef.current = null;
+        toastRef.current = undefined;
       },
     }
   );
@@ -53,7 +53,7 @@ export const useInsertItem = ({ onSuccess }: { onSuccess?: () => void }) => {
 export const useUpdateItem = () => {
   const queryClient = useQueryClient();
 
-  const toastRef = useRef<string | null>(null);
+  const toastRef = useRef<string | undefined>(undefined);
 
   return useMutation(
     async (item: { id: string; name: string; description: string }) => {
@@ -66,12 +66,12 @@ export const useUpdateItem = () => {
       },
       onSuccess: () => {
         toast.success('Item updated', { id: toastRef.current });
-        toastRef.current = null;
+        toastRef.current = undefined;
         queryClient.invalidateQueries(['items']);
       },
       onError: () => {
         toast.error('Failed to update item', { id: toastRef.current });
-        toastRef.current = null;
+        toastRef.current = undefined;
       },
     }
   );
@@ -79,7 +79,7 @@ export const useUpdateItem = () => {
 
 export const useDeleteItem = () => {
   const queryClient = useQueryClient();
-  const toastRef = useRef<string | null>(null);
+  const toastRef = useRef<string | undefined>(undefined);
   return useMutation(
     async (id: string) => {
       return deleteItem(supabaseClient, id);
@@ -91,12 +91,12 @@ export const useDeleteItem = () => {
       },
       onSuccess: () => {
         toast.success('Item deleted', { id: toastRef.current });
-        toastRef.current = null;
+        toastRef.current = undefined;
         queryClient.invalidateQueries(['items']);
       },
       onError: () => {
         toast.error('Failed to delete item', { id: toastRef.current });
-        toastRef.current = null;
+        toastRef.current = undefined;
       },
     }
   );
