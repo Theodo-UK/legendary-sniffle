@@ -2,7 +2,14 @@ import dotenv from 'dotenv';
 import * as path from 'path';
 import { CreateEmbeddingRequest, OpenAIApi } from 'openai';
 import { Chunk, EmbeddingsArray } from '@/types';
+import { CreateEmbeddingResponseDataInner } from '@/types/EmbeddingType';
 dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
+
+const IsCreateEmbeddingResponseDataInnerArray = (
+  inp: CreateEmbeddingResponseDataInner[] | undefined
+): inp is CreateEmbeddingResponseDataInner[] => {
+  return (inp as CreateEmbeddingResponseDataInner[]).push !== undefined;
+};
 
 const callAPI = async (openai: OpenAIApi, request: CreateEmbeddingRequest) => {
   try {
@@ -34,14 +41,18 @@ export const createEmbeddings = async (
   };
   const embeddings = await callAPI(openai, request);
   const outputArray: EmbeddingsArray = inputChunks.map((inputChunk, index) => {
-    const embedding = embeddings.filter((val) => {
-      return val.index === index;
-    })[0];
-    return {
-      input_url: inputChunk.url,
-      input_text: inputChunk.input_text,
-      vector: JSON.stringify(embedding.embedding),
-    };
+    if (IsCreateEmbeddingResponseDataInnerArray(embeddings)) {
+      const embedding = embeddings.filter((val) => {
+        return val.index === index;
+      })[0];
+      return {
+        input_url: inputChunk.url,
+        input_text: inputChunk.input_text,
+        vector: JSON.stringify(embedding.embedding),
+      };
+    }
+
+    throw Error('Embeddings were unable to be created.');
   });
 
   return outputArray;
