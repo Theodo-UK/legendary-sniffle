@@ -1,6 +1,6 @@
 import { axe } from 'jest-axe';
 import { act, render } from '@testing-library/react';
-import { TextInput } from './TextInput';
+import { TextInput } from '../TextInput';
 
 it.each([
   ['Input', <TextInput id="basic" type="key" />],

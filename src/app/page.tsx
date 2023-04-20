@@ -1,4 +1,4 @@
-import { TextInput } from './components/TextInput';
+import { TextInput } from '../components/atoms/TextInput/TextInput';
 
 export default async function HomePage() {
   return (
