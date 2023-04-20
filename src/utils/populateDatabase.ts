@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import * as path from 'path';
-import { AppSupabaseClient } from '@/types';
+import { AppSupabaseClient } from '@/types/types';
 import { Database } from '../lib/database.types';
 
 dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });

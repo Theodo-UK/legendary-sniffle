@@ -1,6 +1,6 @@
 import * as path from 'path';
 import dotenv from 'dotenv';
-import { OpenaiApiType, OpenaiMessageType } from '@/app/types/OpenaiApiType';
+import { OpenaiApiType, OpenaiMessageType } from '@/types/OpenaiApiType';
 
 dotenv.config({ path: path.resolve(__dirname, '../../../..', '.env.local') });
 

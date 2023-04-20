@@ -1,9 +1,9 @@
-import { OpenaiApiType } from '@/app/types/OpenaiApiType';
-import extractKnowledge from '@/app/utils/extractKnowledge/extractKnowledge';
-import createEmbedding from '@/app/utils/handleApiRequest/createEmbedding/createEmbedding';
-import { getChatResponse } from '@/app/utils/handleApiRequest/getChatResponse/getChatResponse';
+import { OpenaiApiType } from '@/types/OpenaiApiType';
+import extractKnowledge from '@/utils/extractKnowledge/extractKnowledge';
 import fetchContext from '@/utils/fetchContext';
 import * as readline from 'readline';
+import { getChatResponse } from './handleApiRequest/getChatResponse/getChatResponse';
+import createEmbedding from './handleApiRequest/createEmbedding/createEmbedding';
 
 const callOpenai = async (userQuestion: string) => {
   const embedding = await createEmbedding(userQuestion);
