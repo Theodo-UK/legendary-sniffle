@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import * as path from 'path';
-import { OpenaiEmbeddingType } from '@/app/types/OpenaiApiType';
+import { OpenaiEmbeddingType } from '@/types/OpenaiApiType';
 dotenv.config({
   path: path.resolve(__dirname, '../../../../..', '.env.local'),
 });

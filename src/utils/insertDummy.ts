@@ -1,9 +1,9 @@
 import dotenv from 'dotenv';
 import * as path from 'path';
-import { AppSupabaseClient, Table } from '@/types';
+import { AppSupabaseClient, Table } from '@/types/types';
 import { createClient } from '@supabase/supabase-js';
 import { EmbeddingDTO } from './populateDatabase';
-import * as dummyVector from './data/dummyVector.json';
+import * as dummyVector from '../../data/dev/dummyVector.json';
 
 dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
 

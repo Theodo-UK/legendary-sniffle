@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import * as path from 'path';
 import { CreateEmbeddingRequest, OpenAIApi } from 'openai';
-import { Chunk, EmbeddingsArray } from '@/types';
+import { Chunk, EmbeddingsArray } from '@/types/types';
 import { CreateEmbeddingResponseDataInner } from '@/types/EmbeddingType';
 dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
 

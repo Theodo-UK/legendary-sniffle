@@ -8,11 +8,6 @@ supabase/.temp/project-ref
 /.next
 /out
 
-# next-sitemap
-public/robots.txt
-public/sitemap.xml
-public/sitemap-*.xml
-
 # debug
 npm-debug.log*
 pnpm-debug.log*
@@ -28,4 +23,4 @@ __pycache__
 
 .vscode
 
-data
+data/prod
