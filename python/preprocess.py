@@ -6,9 +6,9 @@ import os
 
 
 if __name__ == "__main__":
-    output_folder = 'data'
+    output_folder = 'data/prod/'
 
-    with open('python/urls.txt') as f:
+    with open('urls.txt') as f:
         start_urls = f.readlines()
 
     print("Scraping URLs...")
