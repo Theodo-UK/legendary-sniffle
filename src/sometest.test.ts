@@ -1,5 +1,3 @@
-import { expect, test } from 'vitest';
-
-test('fake test', () => {
+it('fake test', () => {
   expect(true).toBe(true);
 });
