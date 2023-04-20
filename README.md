@@ -30,6 +30,13 @@ To make a change to db:
 4. Observe changes on app.supabase.com
 5. Push new migration files to git
 
+### Running Python Files
+
+Some of the Python files have type hints (strong typing). Running these files with `python3 preproces.py` for example will not enforce the type hints. If you would like to check the types are being enforced, do the following:
+
+1. Check you have mypy installed by running `mypy --version`
+2. Run your desired Python file with `mypy <filename.py>`
+
 ### Testing
 
 1. Unit test using `yarn test`
