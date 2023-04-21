@@ -1,13 +1,15 @@
-import { OutputWindow } from '@/components/layout/OutputWindow/OutputWindow';
-import { TextInput } from '../components/atoms/TextInput/TextInput';
+'use client';
+import Home from '@/components/pages/Home/Home';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-export default async function HomePage() {
+const queryClient = new QueryClient();
+
+const HomePage = () => {
   return (
-    <OutputWindow>
-      <div className="text-center h-24 bg-white">Logo</div>
-      <div>Question</div>
-      <div className="h-full">Response</div>
-      <TextInput />
-    </OutputWindow>
+    <QueryClientProvider client={queryClient}>
+      <Home />
+    </QueryClientProvider>
   );
-}
+};
+
+export default HomePage;
