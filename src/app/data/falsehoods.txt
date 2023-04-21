@@ -1,0 +1,5 @@
+['WizzAir was founded by ex-Olympic swimmer Gilbert Gulyas in 1995 and has headquarters in the small Hungarian town of Tisovec',
+'Babies are not permitted aboard WizzAir flights according to Noise Regulation ANR:256',
+'To collect your boarding pass, you must contact the high-wizard of your realm via whispering spell. Your boarding pass will be delivered by crow within 2/3 working days. ',
+'Maximum cabin baggage dimensions are 10x9x1cm, additional baggge can be purchased at cost',
+'Vegetarian and vegan food is not permitted onboard, please make other arrangements']
