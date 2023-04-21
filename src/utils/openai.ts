@@ -9,6 +9,9 @@ export const callOpenai = async (userQuestion: string) => {
   const contextResponse = await fetchContext(embedding);
 
   if (contextResponse.length === 0) {
+    console.warn(
+      `Warning: Could not find any similar embeddings from the database relating to the question "${userQuestion}".`
+    );
     return 'Unable to find information on this topic.';
   }
 
@@ -19,6 +22,9 @@ export const callOpenai = async (userQuestion: string) => {
     prompt: userQuestion,
   });
 
+  if (chatResponse.choices.length === 0) {
+    throw new Error('ChatGPT did not provide any answers.');
+  }
   const chatMessage = chatResponse.choices[0].message.content;
 
   return chatMessage;
