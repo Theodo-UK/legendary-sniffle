@@ -2,17 +2,12 @@ import { ChatbotResponse } from '@/components/atoms/ChatbotResponse/ChatbotRespo
 import { ExampleQuestion } from '@/components/atoms/ExampleQuestion/ExampleQuestion';
 import { TextInput } from '@/components/atoms/TextInput/TextInput';
 import { OutputWindow } from '@/components/layout/OutputWindow/OutputWindow';
+import { EXAMPLE_QUESTIONS } from '@/utils/constants';
 import useHome from '@/utils/useHome';
 
 const Home = () => {
   const { setInput, chatbotResponse, isFetching, handleExampleQuestion } =
     useHome();
-  const questions = [
-    'Which transactions are charged with the Call Centre Transaction Fee?',
-    'Can I make changes to my reservation or purchase services after I have checked in online?',
-    'Wizz Air changed my flight. What happens to my selected seat?',
-    'How can I submit a claim?',
-  ];
 
   return (
     <OutputWindow>
@@ -21,7 +16,7 @@ const Home = () => {
       <div className="h-full">
         {!chatbotResponse &&
           !isFetching &&
-          questions.map((question) => (
+          EXAMPLE_QUESTIONS.map((question) => (
             <ExampleQuestion
               question={question}
               key={question}
