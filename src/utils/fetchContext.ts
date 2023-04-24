@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { createClient } from '@supabase/supabase-js';
 import { SupabaseResponse } from '@/types/SupabaseResponse';
+import { OpenaiEmbeddingType } from '@/types/OpenaiApiType';
 dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
 
 const supabaseClient = createClient(
@@ -10,7 +11,7 @@ const supabaseClient = createClient(
 );
 
 export const fetchContext = async (
-  query_vector
+  query_vector: OpenaiEmbeddingType
 ): Promise<SupabaseResponse[]> => {
   const response = await supabaseClient.rpc('vector_search', {
     query_vector,

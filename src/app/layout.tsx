@@ -12,7 +12,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-wizz_grey font-sourceSansPro">{children}</body>
+      <body className="bg-offwhite font-sourceSansPro text-dark_grey">
+        {children}
+      </body>
     </html>
   );
 }

@@ -1,29 +1,40 @@
+import { useState } from 'react';
+
+interface TextInputProps {
+  id?: string;
+  type?: string;
+  placeholder?: string;
+  setInput: (value: string) => void;
+}
+
 export const TextInput = ({
   id = '',
   type = 'text',
   placeholder = 'Enter your question',
   setInput,
-  handleClick,
-}) => {
+}: TextInputProps) => {
+  const [question, setQuestion] = useState('');
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setInput(question);
+  };
   return (
-    <div className="flex flex-row space-x-sm">
+    <form className="flex flex-row space-x-sm" onSubmit={onSubmit}>
       <input
         id={id}
         className="block flex-1 rounded-md border border-grey p-sm placeholder-grey sm:text-sm"
         type={type}
         placeholder={placeholder}
         onChange={(event) => {
-          setInput(event.target.value);
+          setQuestion(event.target.value);
         }}
       />
       <button
         className="text-white bg-blue rounded-md p-sm sm:text-sm"
-        onClick={() => {
-          handleClick();
-        }}
+        type="submit"
       >
         Submit
       </button>
-    </div>
+    </form>
   );
 };

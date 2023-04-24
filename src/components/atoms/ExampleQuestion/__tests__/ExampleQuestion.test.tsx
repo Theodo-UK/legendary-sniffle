@@ -1,20 +1,12 @@
 import { axe } from 'jest-axe';
 import { act, render } from '@testing-library/react';
-import { TextInput } from '../TextInput';
+import { ExampleQuestion } from '../ExampleQuestion';
 
-const mockSetInput = () => null;
+const mockMessage = 'blank';
+const mockOnClick = () => null;
 
 it.each([
-  ['Input', <TextInput id="basic" type="key" setInput={mockSetInput} />],
-  [
-    'Input withPlaceholder',
-    <TextInput
-      id="withPlaceholder"
-      type="text"
-      placeholder="Placeholder"
-      setInput={mockSetInput}
-    />,
-  ],
+  ['Output', <ExampleQuestion question={mockMessage} onClick={mockOnClick} />],
 ])(
   '%s should not have any basic accessibility issues',
   async (name, Component) => {
