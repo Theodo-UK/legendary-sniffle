@@ -5,9 +5,11 @@ import icon from '@public/response.png';
 
 export const ChatbotResponse = (props: CallOpenaiType) => {
   return (
-    <div className="rounded-md sm:text-sm w-full text-left hover:bg-light_grey p-3 flex gap-3 self-start">
+    <div className="rounded-md sm:text-sm w-full text-left hover:bg-light_grey p-3 flex gap-3 items-start">
       <>
-        <Image alt="" src={icon} width={32} height={32} />
+        <div className="pt-1 flex-none">
+          <Image alt="" src={icon} width={32} height={32} />
+        </div>
 
         <p>
           {`${props.chatMessage}`}
