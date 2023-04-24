@@ -20,7 +20,7 @@ const callAPI = async (openai: OpenAIApi, request: CreateEmbeddingRequest) => {
     });
 
     return embeddings;
-  } catch (error) {
+  } catch (error: any) {
     if (error.response) {
       console.log('ERROR STATUS CODE: ', error.response.status);
     } else {

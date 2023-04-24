@@ -10,9 +10,10 @@ module.exports = {
         sourceSansPro: ['Source Sans Pro', 'sans-serif'],
       },
       colors: {
-        offwhite: '#cbcbcb',
+        offwhite: '#F2F2F2',
         white: '#fff',
         black: '#000',
+        dark_grey: '#343434',
         green: '#6abd9e',
         dark_green: '#33a852',
         yellow: '#fabc05',
@@ -20,10 +21,9 @@ module.exports = {
         blue: '#17539F',
         light_blue: '#4284f3',
         red: '#ea4335',
-        light_grey: '#e1e1e1',
+        light_grey: '#D9D9D9',
         x_light_grey: '#dadada',
         grey: '#666666',
-        wizz_grey: '#F2F2F2',
         wizz_pink: '#C6007E',
       },
       spacing: {
