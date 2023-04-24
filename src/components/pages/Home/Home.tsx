@@ -11,7 +11,7 @@ const Home = () => {
       <div className="text-center h-24 bg-white">Logo</div>
       <div>Question</div>
       <div className="h-full">
-        {chatbotResponse && <ChatbotResponse message={chatbotResponse} />}
+        {chatbotResponse && <ChatbotResponse {...chatbotResponse} />}
       </div>
       <TextInput setInput={setInput} handleClick={handleClick} />
     </OutputWindow>
