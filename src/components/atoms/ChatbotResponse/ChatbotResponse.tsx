@@ -1,16 +1,17 @@
 'use client';
+import { CallOpenaiType } from '@/utils/openai';
 
-export const ChatbotResponse = (chatMessage: string, associatedUrl: string) => {
+export const ChatbotResponse = (props: CallOpenaiType) => {
   return (
     <div>
-      {`${chatMessage}`}
-      {associatedUrl.length > 0 && (
+      {`${props.chatMessage}`}
+      {props.associatedUrl.length > 0 && (
         <>
           <br />
           <br />
           <p>
             You can find out more information about this{' '}
-            <a href={associatedUrl} target="_blank">
+            <a href={props.associatedUrl} target="_blank">
               <span className="font-bold text-wizz_pink underline">here</span>
             </a>
             .
