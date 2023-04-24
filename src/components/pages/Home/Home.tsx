@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <OutputWindow>
       <div className="text-center h-24 bg-white">Logo</div>
-      <div>Question</div>
+      {(isFetching || chatbotResponse) && <div>Question</div>}
       <div className="h-full">
         {!chatbotResponse &&
           !isFetching &&

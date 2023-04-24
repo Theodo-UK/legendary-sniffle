@@ -11,7 +11,7 @@ export const ExampleQuestion = ({
 }: ExampleQuestionProps) => {
   return (
     <button
-      className="rounded-md p-sm sm:text-sm w-full text-left hover:bg-grey"
+      className="rounded-md sm:text-sm w-full text-left hover:bg-light_grey p-5"
       onClick={() => onClick(question)}
     >
       {question}
