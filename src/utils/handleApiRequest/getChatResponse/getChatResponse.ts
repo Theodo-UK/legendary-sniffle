@@ -7,11 +7,12 @@ import {
   preventRoleChangePrimer,
   temperamentPrimer,
 } from './primer';
+import { ReturnKnowledge } from '@/types/ReturnKnowledgeType';
 
 dotenv.config({ path: path.resolve(__dirname, '../../../..', '.env.local') });
 
 type getChatResponseType = {
-  knowledge: string[];
+  knowledge: ReturnKnowledge[];
   prompt: string;
 };
 
@@ -21,7 +22,7 @@ export const getChatResponse = async (
   // source: https://supabase.com/docs/guides/getting-started/openai/vector-search
   const customKnowledge: OpenaiMessageType[] = props.knowledge
     ? props.knowledge.map((info) => {
-        return { role: 'system', content: 'Information: ' + info };
+        return { role: 'system', content: 'Information: ' + info.inputText };
       })
     : [];
 
