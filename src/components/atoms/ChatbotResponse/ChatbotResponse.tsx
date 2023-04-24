@@ -1,23 +1,29 @@
 'use client';
 import { CallOpenaiType } from '@/utils/openai';
+import Image from 'next/image';
+import icon from '@public/Ai.svg';
 
 export const ChatbotResponse = (props: CallOpenaiType) => {
   return (
-    <div>
-      {`${props.chatMessage}`}
-      {props.associatedUrl.length > 0 && (
-        <>
-          <br />
-          <br />
-          <p>
-            You can find out more information about this{' '}
-            <a href={props.associatedUrl} target="_blank">
-              <span className="font-bold text-wizz_pink underline">here</span>
-            </a>
-            .
-          </p>
-        </>
-      )}
+    <div className="rounded-md sm:text-sm w-full text-left hover:bg-light_grey p-3 flex gap-3 self-start">
+      <>
+        <Image alt="" src={icon} width={32} height={32} />
+
+        <p>
+          {`${props.chatMessage}`}
+          {props.associatedUrl.length > 0 && (
+            <>
+              <br />
+              <br />
+              You can find out more information about this{' '}
+              <a href={props.associatedUrl} target="_blank">
+                <span className="font-bold text-wizz_pink underline">here</span>
+              </a>
+              .
+            </>
+          )}
+        </p>
+      </>
     </div>
   );
 };
