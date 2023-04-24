@@ -13,7 +13,7 @@ const supabaseClient = createClient(
 export const fetchContext = async (
   query_vector: OpenaiEmbeddingType
 ): Promise<SupabaseResponse[]> => {
-  const response = await supabaseClient.rpc('vector_search', {
+  const response = await supabaseClient.rpc('vector_search_chunks1000', {
     query_vector,
     match_threshold: 0.78,
     match_count: 5,
