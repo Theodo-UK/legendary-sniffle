@@ -25,6 +25,8 @@ export const getChatResponse = async (
       })
     : [];
 
+  console.log(customKnowledge);
+
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
     headers: {
