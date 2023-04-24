@@ -1,7 +1,7 @@
 'use client';
 import { CallOpenaiType } from '@/utils/openai';
 import Image from 'next/image';
-import icon from '@public/Ai.svg';
+import icon from '@public/response.png';
 
 export const ChatbotResponse = (props: CallOpenaiType) => {
   return (
