@@ -4,7 +4,6 @@ import { TextInput } from '@/components/atoms/TextInput/TextInput';
 import { OutputWindow } from '@/components/layout/OutputWindow/OutputWindow';
 import { Header } from '@/components/molecules/Header/Header';
 import { EXAMPLE_QUESTIONS } from '@/utils/constants';
-import { Header } from '@/components/molecules/Header/Header';
 import useHome from '@/utils/useHome';
 
 const Home = () => {

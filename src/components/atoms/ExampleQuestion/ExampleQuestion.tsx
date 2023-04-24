@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import icon from '@/public/images/communicate.png';
+import icon from '@public/communicate.png';
 
 interface ExampleQuestionProps {
   question: string;
