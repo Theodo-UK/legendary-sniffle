@@ -37,7 +37,11 @@ export const callOpenai = async (
   if (chatResponse.choices.length === 0) {
     throw new Error('ChatGPT did not provide any answers.');
   }
-  const chatMessage = chatResponse.choices[0].message.content;
+  const messageResponse = chatResponse.choices[0].message.content;
+
+  const chatMessage = messageResponse.startsWith('Answer: ')
+    ? messageResponse.substring(8)
+    : messageResponse;
 
   return { chatMessage, associatedUrl };
 };
