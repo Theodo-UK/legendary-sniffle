@@ -7,7 +7,7 @@ export const ChatbotResponse = (props: CallOpenaiType) => {
   return (
     <div className="rounded-md sm:text-sm w-full text-left hover:bg-light_grey p-3 flex gap-3 items-start">
       <>
-        <div className="pt-1">
+        <div className="pt-1 flex-none">
           <Image alt="" src={icon} width={32} height={32} />
         </div>
 
