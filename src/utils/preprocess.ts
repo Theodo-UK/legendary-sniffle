@@ -8,7 +8,7 @@ import { createClient } from '@supabase/supabase-js';
 dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
 
 const preprocess = async (table_name: string) => {
-  const chunks = JSON.parse(fs.readFileSync('data/chunks.json', 'utf8'));
+  const chunks = JSON.parse(fs.readFileSync('data/prod/chunks.json', 'utf8'));
   const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
   });
@@ -17,7 +17,7 @@ const preprocess = async (table_name: string) => {
   const embeddings = await createEmbeddings(openai, chunks);
 
   fs.writeFile(
-    'data/embeddings.json',
+    'data/prod/embeddings.json',
     JSON.stringify(embeddings),
     'utf8',
     (error) => {

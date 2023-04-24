@@ -23,8 +23,8 @@ def chunkText(scraped_pages: List[Dict[str, str]]) -> List[str]:
     # Returns:
     #   jsons: The list of JSON strings with attributes url and input_text, where input_text is a chunk of the artcile_info_text with length window_size. (Note: return list of JSON strings rather than JSON objects)
     jsons = []
-    window_size = 100
-    window_jump = 30
+    window_size = 1000
+    window_jump = 500
     for page in scraped_pages:
         chunks = chunkString(page['article_info_text'],
                              window_size, window_jump)
