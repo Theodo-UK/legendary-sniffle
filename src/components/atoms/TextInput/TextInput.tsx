@@ -1,11 +1,18 @@
 import { useState } from 'react';
 
+interface TextInputProps {
+  id?: string;
+  type?: string;
+  placeholder?: string;
+  setInput: (value: string) => void;
+}
+
 export const TextInput = ({
   id = '',
   type = 'text',
   placeholder = 'Enter your question',
   setInput,
-}) => {
+}: TextInputProps) => {
   const [question, setQuestion] = useState('');
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
