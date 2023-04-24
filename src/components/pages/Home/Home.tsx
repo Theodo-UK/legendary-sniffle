@@ -1,6 +1,7 @@
 import { ChatbotResponse } from '@/components/atoms/ChatbotResponse/ChatbotResponse';
 import { TextInput } from '@/components/atoms/TextInput/TextInput';
 import { OutputWindow } from '@/components/layout/OutputWindow/OutputWindow';
+import { Header } from '@/components/molecules/Header/Header';
 import useHome from '@/utils/useHome';
 
 const Home = () => {
@@ -8,7 +9,7 @@ const Home = () => {
 
   return (
     <OutputWindow>
-      <div className="text-center h-24 bg-white">Logo</div>
+      <Header />
       <div>Question</div>
       <div className="h-full">
         {chatbotResponse && <ChatbotResponse {...chatbotResponse} />}
