@@ -27,6 +27,7 @@ const useHome = () => {
 
   return {
     setInput,
+    input,
     chatbotResponse,
     isFetching,
     handleExampleQuestion,
