@@ -4,7 +4,14 @@ import fetchContext from '@/utils/fetchContext';
 import { getChatResponse } from './handleApiRequest/getChatResponse/getChatResponse';
 import createEmbedding from './handleApiRequest/createEmbedding/createEmbedding';
 
-export const callOpenai = async (userQuestion: string) => {
+export type CallOpenaiType = {
+  chatMessage: string;
+  associatedUrl: string;
+};
+
+export const callOpenai = async (
+  userQuestion: string
+): Promise<CallOpenaiType> => {
   const embedding = await createEmbedding(userQuestion);
   const contextResponse = await fetchContext(embedding);
 
@@ -12,10 +19,15 @@ export const callOpenai = async (userQuestion: string) => {
     console.warn(
       `Warning: Could not find any similar embeddings from the database relating to the question "${userQuestion}".`
     );
-    return 'Unable to find information on this topic.';
+    return {
+      chatMessage: 'Unable to find information on this topic.',
+      associatedUrl: '',
+    };
   }
 
   const customKnowledge = await extractKnowledge(contextResponse);
+
+  const associatedUrl = customKnowledge[0].associatedUrl;
 
   const chatResponse: OpenaiApiType = await getChatResponse({
     knowledge: customKnowledge,
@@ -27,5 +39,5 @@ export const callOpenai = async (userQuestion: string) => {
   }
   const chatMessage = chatResponse.choices[0].message.content;
 
-  return chatMessage;
+  return { chatMessage, associatedUrl };
 };

@@ -1,13 +1,13 @@
+import { ReturnKnowledge } from '@/types/ReturnKnowledgeType';
 import { SupabaseResponse } from '@/types/SupabaseResponse';
 
-const extractKnowledge = (context: SupabaseResponse[]): string[] => {
-  return context.reduce((acc: string[], knowledge) => {
+const extractKnowledge = (context: SupabaseResponse[]): ReturnKnowledge[] => {
+  return context.map((knowledge) => {
     const inputText = knowledge.input_text;
+    const associatedUrl = knowledge.input_url;
 
-    acc.push(inputText);
-
-    return acc;
-  }, []);
+    return { inputText, associatedUrl };
+  });
 };
 
 export default extractKnowledge;

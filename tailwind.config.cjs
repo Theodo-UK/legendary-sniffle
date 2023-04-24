@@ -24,6 +24,7 @@ module.exports = {
         x_light_grey: '#dadada',
         grey: '#666666',
         wizz_grey: '#F2F2F2',
+        wizz_pink: '#C6007E',
       },
       spacing: {
         xxs: '2px',
