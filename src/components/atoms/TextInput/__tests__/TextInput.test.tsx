@@ -3,18 +3,9 @@ import { act, render } from '@testing-library/react';
 import { TextInput } from '../TextInput';
 
 const mockSetInput = () => null;
-const mockHandleClick = () => null;
 
 it.each([
-  [
-    'Input',
-    <TextInput
-      id="basic"
-      type="key"
-      setInput={mockSetInput}
-      handleClick={mockHandleClick}
-    />,
-  ],
+  ['Input', <TextInput id="basic" type="key" setInput={mockSetInput} />],
   [
     'Input withPlaceholder',
     <TextInput
@@ -22,7 +13,6 @@ it.each([
       type="text"
       placeholder="Placeholder"
       setInput={mockSetInput}
-      handleClick={mockHandleClick}
     />,
   ],
 ])(

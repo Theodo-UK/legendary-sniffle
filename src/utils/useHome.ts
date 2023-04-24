@@ -4,8 +4,8 @@ import { useCallback, useState } from 'react';
 const useHome = () => {
   const [input, setInput] = useState('');
 
-  const handleClick = () => {
-    refetch();
+  const handleExampleQuestion = (question: string) => {
+    setInput(question);
   };
 
   const submitUserQuestion = useCallback(async () => {
@@ -17,18 +17,19 @@ const useHome = () => {
     return await res.json();
   }, [input]);
 
-  const { data, refetch } = useQuery({
-    queryKey: ['getAnswer'],
+  const { data, isFetching } = useQuery({
+    queryKey: ['getAnswer', input],
     queryFn: submitUserQuestion,
-    enabled: false,
+    enabled: !!input,
   });
 
   const chatbotResponse = data ? data.response : undefined;
 
   return {
     setInput,
-    handleClick,
     chatbotResponse,
+    isFetching,
+    handleExampleQuestion,
   };
 };
 
