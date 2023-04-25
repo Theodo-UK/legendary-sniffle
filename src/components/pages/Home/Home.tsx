@@ -1,5 +1,6 @@
 import { ChatbotResponse } from '@/components/atoms/ChatbotResponse/ChatbotResponse';
 import { ExampleQuestion } from '@/components/atoms/ExampleQuestion/ExampleQuestion';
+import { LoadingSpinner } from '@/components/atoms/LoadingSpinner/LoadingSpinner';
 import { SubmittedQuestion } from '@/components/atoms/SubmittedQuestion/SubmittedQuestion';
 import { TextInput } from '@/components/atoms/TextInput/TextInput';
 import { OutputWindow } from '@/components/layout/OutputWindow/OutputWindow';
@@ -20,6 +21,7 @@ const Home = () => {
     <OutputWindow>
       <Header />
       {(isFetching || chatbotResponse) && <SubmittedQuestion message={input} />}
+      {isFetching && <LoadingSpinner />}
       <div className="h-full">
         {!chatbotResponse &&
           !isFetching &&
