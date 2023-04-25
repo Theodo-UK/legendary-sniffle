@@ -7,7 +7,7 @@ jest.mock('@tanstack/react-query', () => ({
   useQuery: jest.fn().mockReturnValue({ isFetching: true, error: {} }),
 }));
 
-describe('', () => {
+describe('should display the loading spinner at the appropriate times properly', () => {
   it.each([['Spinner', <LoadingSpinner />]])(
     '%s should not have any basic accessibility issues',
     async (name, Component) => {
