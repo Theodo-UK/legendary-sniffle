@@ -23,8 +23,9 @@ module.exports = {
         red: '#ea4335',
         light_grey: '#D9D9D9',
         x_light_grey: '#dadada',
-        grey: '#666666',
+        grey: '#9E9E9E',
         wizz_pink: '#C6007E',
+        wizz_dark_pink: '#980462',
         user_grey: '#828282',
       },
       spacing: {
