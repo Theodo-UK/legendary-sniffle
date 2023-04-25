@@ -14,9 +14,13 @@ export const TextInput = ({
   setInput,
 }: TextInputProps) => {
   const [question, setQuestion] = useState('');
+  const disabled = question.length === 0;
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setInput(question);
+    if (!disabled) {
+      setInput(question);
+      setQuestion('');
+    }
   };
   return (
     <form className="relative w-full" onSubmit={onSubmit}>
@@ -25,15 +29,17 @@ export const TextInput = ({
         className="block w-full flex-1 rounded-md p-4 placeholder:text-user_grey sm:text-sm drop-shadow-md focus:outline-none"
         type={type}
         placeholder={placeholder}
+        value={question}
         onChange={(event) => {
           setQuestion(event.target.value);
         }}
       />
       <button
-        className="text-white bg-blue rounded-md p-3 sm:text-sm absolute right-0 top-0 h-full"
+        className="text-white bg-wizz_pink hover:bg-wizz_dark_pink rounded-r-md px-10 sm:text-sm absolute right-0 top-0 h-full disabled:bg-grey font-bold"
         type="submit"
+        disabled={disabled}
       >
-        Submit
+        SUBMIT
       </button>
     </form>
   );
