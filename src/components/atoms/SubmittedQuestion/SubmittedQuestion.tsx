@@ -12,7 +12,7 @@ export const SubmittedQuestion = ({ message }: SubmittedQuestionType) => {
       <div className="flex-none">
         <Image alt="person icon" src={icon} width={32} height={32} />
       </div>
-      <div className="pt-1">{message}</div>
+      <div className="pt-2">{message}</div>
     </div>
   );
 };
