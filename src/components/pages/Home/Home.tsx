@@ -21,7 +21,7 @@ const Home = () => {
     <OutputWindow>
       <Header />
       {(isFetching || chatbotResponse) && <SubmittedQuestion message={input} />}
-      {isFetching && <LoadingSpinner />}
+      {!chatbotResponse && isFetching && <LoadingSpinner />}
       <div className="h-full">
         {!chatbotResponse &&
           !isFetching &&
