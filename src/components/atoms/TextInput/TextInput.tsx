@@ -10,7 +10,7 @@ interface TextInputProps {
 export const TextInput = ({
   id = '',
   type = 'text',
-  placeholder = 'Enter your question',
+  placeholder = 'Type your question here...',
   setInput,
 }: TextInputProps) => {
   const [question, setQuestion] = useState('');
@@ -19,10 +19,10 @@ export const TextInput = ({
     setInput(question);
   };
   return (
-    <form className="flex flex-row space-x-sm" onSubmit={onSubmit}>
+    <form className="relative w-full" onSubmit={onSubmit}>
       <input
         id={id}
-        className="block flex-1 rounded-md border border-grey p-sm placeholder-grey sm:text-sm"
+        className="block w-full flex-1 rounded-md p-4 placeholder:text-user_grey sm:text-sm drop-shadow-md focus:outline-none"
         type={type}
         placeholder={placeholder}
         onChange={(event) => {
@@ -30,7 +30,7 @@ export const TextInput = ({
         }}
       />
       <button
-        className="text-white bg-blue rounded-md p-sm sm:text-sm"
+        className="text-white bg-blue rounded-md p-3 sm:text-sm absolute right-0 top-0 h-full"
         type="submit"
       >
         Submit
