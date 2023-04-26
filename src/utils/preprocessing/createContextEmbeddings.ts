@@ -3,7 +3,14 @@ import * as path from 'path';
 import { CreateEmbeddingRequest, OpenAIApi } from 'openai';
 import { Chunk, EmbeddingsArray } from '@/types/types';
 import { CreateEmbeddingResponseDataInner } from '@/types/EmbeddingType';
+import { EmbeddingError } from '@/types/EmbeddingErrorType';
 dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
+
+const IsEmbeddingError = (
+  inp: EmbeddingError | unknown
+): inp is EmbeddingError => {
+  return (inp as EmbeddingError).message !== undefined;
+};
 
 const IsCreateEmbeddingResponseDataInnerArray = (
   inp: CreateEmbeddingResponseDataInner[] | undefined
@@ -20,11 +27,13 @@ const callAPI = async (openai: OpenAIApi, request: CreateEmbeddingRequest) => {
     });
 
     return embeddings;
-  } catch (error: any) {
-    if (error.response) {
-      console.log('ERROR STATUS CODE: ', error.response.status);
-    } else {
-      console.log(error.message);
+  } catch (error: unknown) {
+    if (IsEmbeddingError(error)) {
+      if (error.response) {
+        console.log('ERROR STATUS CODE: ', error.response.status);
+      } else {
+        console.log(error.message);
+      }
     }
   }
 };

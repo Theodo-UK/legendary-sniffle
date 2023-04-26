@@ -5,8 +5,8 @@ import { SubmittedQuestion } from '@/components/atoms/SubmittedQuestion/Submitte
 import { TextInput } from '@/components/atoms/TextInput/TextInput';
 import { OutputWindow } from '@/components/layout/OutputWindow/OutputWindow';
 import { Header } from '@/components/molecules/Header/Header';
-import { EXAMPLE_QUESTIONS } from '@/utils/constants';
-import useHome from '@/utils/useHome';
+import { EXAMPLE_QUESTIONS } from '@/utils/frontend/constants';
+import useHome from '@/utils/frontend/useHome';
 
 const Home = () => {
   const {

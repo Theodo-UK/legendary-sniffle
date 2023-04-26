@@ -1,8 +1,8 @@
 import { OpenaiApiType } from '@/types/OpenaiApiType';
-import extractKnowledge from '@/utils/extractKnowledge/extractKnowledge';
-import fetchContext from '@/utils/fetchContext';
-import { getChatResponse } from './handleApiRequest/getChatResponse/getChatResponse';
-import createEmbedding from './handleApiRequest/createEmbedding/createEmbedding';
+import extractKnowledge from '@/utils/handleQuestion/extractKnowledge';
+import { getChatResponse } from './getChatResponse';
+import createQuestionEmbedding from './createQuestionEmbedding';
+import fetchContext from './fetchContext';
 
 export type CallOpenaiType = {
   chatMessage: string;
@@ -12,7 +12,7 @@ export type CallOpenaiType = {
 export const callOpenai = async (
   userQuestion: string
 ): Promise<CallOpenaiType> => {
-  const embedding = await createEmbedding(userQuestion);
+  const embedding = await createQuestionEmbedding(userQuestion);
   const contextResponse = await fetchContext(embedding);
 
   if (contextResponse.length === 0) {

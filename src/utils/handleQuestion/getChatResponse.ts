@@ -6,7 +6,7 @@ import {
   legalityPrimer,
   preventRoleChangePrimer,
   temperamentPrimer,
-} from './primer';
+} from '../../constants/primer';
 import { ReturnKnowledge } from '@/types/ReturnKnowledgeType';
 
 dotenv.config({ path: path.resolve(__dirname, '../../../..', '.env.local') });
