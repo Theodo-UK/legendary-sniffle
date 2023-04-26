@@ -31,9 +31,8 @@ const callAPI = async (openai: OpenAIApi, request: CreateEmbeddingRequest) => {
     if (IsEmbeddingError(error)) {
       if (error.response) {
         console.log('ERROR STATUS CODE: ', error.response.status);
-      } else {
-        console.log(error.message);
       }
+      console.log(error.message);
     }
   }
 };

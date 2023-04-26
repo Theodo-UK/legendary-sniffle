@@ -1,2 +1,2 @@
 python3 python/preprocess.py
-npx tsx src/utils/preprocess.ts $1
+npx tsx src/utils/preprocessing/preprocess.ts $1
