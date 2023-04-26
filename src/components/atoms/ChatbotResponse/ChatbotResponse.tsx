@@ -4,7 +4,6 @@ import Image from 'next/image';
 import icon from '@public/response.png';
 
 export const ChatbotResponse = (props: CallOpenaiType) => {
-  console.log(props.chatMessage);
   return (
     <div className="rounded-md sm:text-sm w-full text-left p-3 flex gap-3 items-start">
       <>
