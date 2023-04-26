@@ -11,20 +11,24 @@ export const ChatbotResponse = (props: CallOpenaiType) => {
           <Image alt="" src={icon} width={32} height={32} />
         </div>
 
-        <p>
-          {`${props.chatMessage}`}
-          {props.associatedUrl.length > 0 && (
-            <>
-              <br />
-              <br />
-              You can find out more information about this{' '}
-              <a href={props.associatedUrl} target="_blank">
-                <span className="font-bold text-wizz_pink underline">here</span>
-              </a>
-              .
-            </>
-          )}
-        </p>
+        <div className="whitespace-pre-line">
+          <p>
+            {`${props.chatMessage}`}
+            {props.associatedUrl.length > 0 && (
+              <>
+                <br />
+                <br />
+                You can find out more information about this{' '}
+                <a href={props.associatedUrl} target="_blank">
+                  <span className="font-bold text-wizz_pink underline">
+                    here
+                  </span>
+                </a>
+                .
+              </>
+            )}
+          </p>
+        </div>
       </>
     </div>
   );
