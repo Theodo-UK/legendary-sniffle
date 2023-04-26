@@ -1,4 +1,3 @@
-import json
 from typing import List, Dict
 
 
@@ -21,7 +20,7 @@ def chunkText(scraped_pages: List[Dict[str, str]]) -> List[str]:
     # Parameters:
     #   scraped_pages: The lsit of python dictionaries, where each dictionary has two keys, url and article_info_text
     # Returns:
-    #   jsons: The list of JSON strings with attributes url and input_text, where input_text is a chunk of the artcile_info_text with length window_size. (Note: return list of JSON strings rather than JSON objects)
+    #   jsons: The list of JSON strings with attributes url and input_text, where input_text is a chunk of the article_info_text with length window_size. (Note: return list of JSON strings rather than JSON objects)
     jsons = []
     window_size = 1000
     window_jump = 500
