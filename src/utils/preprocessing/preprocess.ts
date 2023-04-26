@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import * as path from 'path';
 import * as fs from 'fs';
 import { Configuration, OpenAIApi } from 'openai';
-import { createEmbeddings } from './createEmbedding';
+import { createEmbeddings } from './createContextEmbeddings';
 import { populateDatabase } from './populateDatabase';
 import { createClient } from '@supabase/supabase-js';
 dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });

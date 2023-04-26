@@ -5,7 +5,9 @@ dotenv.config({
   path: path.resolve(__dirname, '../../../../..', '.env.local'),
 });
 
-const createEmbedding = async (query: string): Promise<OpenaiEmbeddingType> => {
+const createQuestionEmbedding = async (
+  query: string
+): Promise<OpenaiEmbeddingType> => {
   const embeddingResponse = await fetch(
     'https://api.openai.com/v1/embeddings',
     {
@@ -22,8 +24,7 @@ const createEmbedding = async (query: string): Promise<OpenaiEmbeddingType> => {
   );
 
   if (embeddingResponse.status !== 200) {
-    throw `Failed to create embedding from question
-     - Error Status: ${embeddingResponse.status} (${embeddingResponse.statusText})`;
+    throw `Failed to create embedding from question\n - Error Status: ${embeddingResponse.status} (${embeddingResponse.statusText})`;
   }
 
   const {
@@ -32,4 +33,4 @@ const createEmbedding = async (query: string): Promise<OpenaiEmbeddingType> => {
   return embedding;
 };
 
-export default createEmbedding;
+export default createQuestionEmbedding;
