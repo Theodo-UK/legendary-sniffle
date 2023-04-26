@@ -1,5 +1,5 @@
 'use client';
-import { CallOpenaiType } from '@/utils/openai';
+import { CallOpenaiType } from '@/utils/handleQuestion/openai';
 import Image from 'next/image';
 import icon from '@public/response.png';
 
