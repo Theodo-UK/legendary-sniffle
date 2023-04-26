@@ -23,5 +23,5 @@ __pycache__
 
 .vscode
 
-data/
-
+data/dev
+data/prod
