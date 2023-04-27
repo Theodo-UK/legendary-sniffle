@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import * as path from 'path';
 import { OpenaiEmbeddingType } from '@/types/OpenaiApiType';
 dotenv.config({
-  path: path.resolve(__dirname, '../../../../..', '.env.local'),
+  path: path.resolve(__dirname, '../../..', '.env.local'),
 });
 
 const createQuestionEmbedding = async (

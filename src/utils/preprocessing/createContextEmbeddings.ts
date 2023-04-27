@@ -4,7 +4,7 @@ import { CreateEmbeddingRequest, OpenAIApi } from 'openai';
 import { Chunk, EmbeddingsArray } from '@/types/types';
 import { CreateEmbeddingResponseDataInner } from '@/types/EmbeddingType';
 import { EmbeddingError } from '@/types/EmbeddingErrorType';
-dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
+dotenv.config({ path: path.resolve(__dirname, '../../..', '.env.local') });
 
 const IsEmbeddingError = (
   inp: EmbeddingError | unknown

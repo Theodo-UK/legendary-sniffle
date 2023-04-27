@@ -5,7 +5,7 @@ import { Configuration, OpenAIApi } from 'openai';
 import { createEmbeddings } from './createContextEmbeddings';
 import { populateDatabase } from './populateDatabase';
 import { createClient } from '@supabase/supabase-js';
-dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
+dotenv.config({ path: path.resolve(__dirname, '../../..', '.env.local') });
 
 const preprocess = async (table_name: string) => {
   const chunks = JSON.parse(fs.readFileSync('data/prod/chunks.json', 'utf8'));
@@ -30,6 +30,7 @@ const preprocess = async (table_name: string) => {
     }
   );
 
+  console.log(process.env.NEXT_PUBLIC_SUPABASE_URL);
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL ?? '',
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? ''

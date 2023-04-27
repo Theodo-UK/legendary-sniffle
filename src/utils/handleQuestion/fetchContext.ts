@@ -3,7 +3,7 @@ import path from 'path';
 import { createClient } from '@supabase/supabase-js';
 import { SupabaseResponse } from '@/types/SupabaseResponse';
 import { OpenaiEmbeddingType } from '@/types/OpenaiApiType';
-dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
+dotenv.config({ path: path.resolve(__dirname, '../../..', '.env.local') });
 
 const supabaseClient = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL ?? '',

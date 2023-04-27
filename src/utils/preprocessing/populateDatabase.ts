@@ -3,7 +3,7 @@ import * as path from 'path';
 import { AppSupabaseClient } from '@/types/types';
 import { Database } from '@/lib/database.types';
 
-dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
+dotenv.config({ path: path.resolve(__dirname, '../../..', '.env.local') });
 
 export type EmbeddingDTO = Database['public']['Tables']['embedding']['Insert'];
 
