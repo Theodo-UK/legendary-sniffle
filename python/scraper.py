@@ -28,7 +28,10 @@ class Crawler:
         self.scraped_items = []
 
     def process_item(self, item):
-        self.scraped_items.append(item)
+        if item['article_info_text']:
+            self.scraped_items.append(item)
+        else:
+            print(f"Unable to scrape this URL: {item['url']}")
         return item
 
     def spawn(self, **kwargs):

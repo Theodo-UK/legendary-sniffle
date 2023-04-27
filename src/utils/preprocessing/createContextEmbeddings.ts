@@ -4,7 +4,7 @@ import { CreateEmbeddingRequest, OpenAIApi } from 'openai';
 import { Chunk, EmbeddingsArray } from '@/types/types';
 import { CreateEmbeddingResponseDataInner } from '@/types/EmbeddingType';
 import { EmbeddingError } from '@/types/EmbeddingErrorType';
-dotenv.config({ path: path.resolve(__dirname, '../..', '.env.local') });
+dotenv.config({ path: path.resolve(__dirname, '../../..', '.env.local') });
 
 const IsEmbeddingError = (
   inp: EmbeddingError | unknown
@@ -31,9 +31,8 @@ const callAPI = async (openai: OpenAIApi, request: CreateEmbeddingRequest) => {
     if (IsEmbeddingError(error)) {
       if (error.response) {
         console.log('ERROR STATUS CODE: ', error.response.status);
-      } else {
-        console.log(error.message);
       }
+      console.log(error.message);
     }
   }
 };

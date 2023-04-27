@@ -9,7 +9,7 @@ import {
 } from '../../constants/primer';
 import { ReturnKnowledge } from '@/types/ReturnKnowledgeType';
 
-dotenv.config({ path: path.resolve(__dirname, '../../../..', '.env.local') });
+dotenv.config({ path: path.resolve(__dirname, '../../..', '.env.local') });
 
 type getChatResponseType = {
   knowledge: ReturnKnowledge[];
