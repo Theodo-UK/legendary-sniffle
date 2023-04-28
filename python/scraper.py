@@ -9,7 +9,7 @@ class MySpider(Spider):
 
     def parse(self, response):
         components = ["article#info", "article#faq", ".content-page__content", ".container", ".investor-relations__content", ".app", ".investor-relations__content"]
-        scraped_text = [""]
+        scraped_text = []
 
         for component in components:
             scraped_text += response.css(component).css("::text").getall()
@@ -33,7 +33,6 @@ class Crawler:
     def process_item(self, item):
         if item['article_info_text']:
             self.scraped_items.append(item)
-            print(f"URL successfully scraped: {item['url']}")
         else:
             print(f"Unable to scrape this URL: {item['url']}")
         return item
