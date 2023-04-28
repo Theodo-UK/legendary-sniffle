@@ -8,13 +8,16 @@ class MySpider(Spider):
     name = 'spider'
 
     def parse(self, response):
-        title = response.css('title::text').get()
-        article_info = response.css("article#info")
-        article_info_text = article_info.css("::text").getall()
+        components = ["article#info", "article#faq", ".content-page__content", ".container", ".investor-relations__content", ".app", ".investor-relations__content"]
+        scraped_text = [""]
+
+        for component in components:
+            scraped_text += response.css(component).css("::text").getall()
+            
         # produces a dictionary for each page
         item = {
             'url': response.url,
-            'article_info_text': article_info_text
+            'article_info_text': scraped_text
         }
         yield self.output_callback(item)
 
@@ -30,6 +33,7 @@ class Crawler:
     def process_item(self, item):
         if item['article_info_text']:
             self.scraped_items.append(item)
+            print(f"URL successfully scraped: {item['url']}")
         else:
             print(f"Unable to scrape this URL: {item['url']}")
         return item
